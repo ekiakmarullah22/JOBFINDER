@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Get your job</h2>
+                        <h2>Pekerjaan Berdasarkan Kategori</h2>
                     </div>
                 </div>
             </div>
@@ -44,10 +44,10 @@
                        </div>
                         <!-- Select job items start -->
                         <div class="select-job-items2">
-                            <select name="select" >
+                            <select name="select">
                                 <option value="">All Category</option>
                                 @forelse ($kategori as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                <option value="">{{ $item->nama_kategori }}</option>
                                 @empty
                                     <h4>Data kategori tidak ada...</h4>
                                 @endforelse
@@ -211,7 +211,7 @@
                                     </a>
                                     <ul>
                                         <li>{{ $item->nama_perusahaan }}</li>
-                                        <li><a href="/lokasi/{{ $item->lokasi->id }}" style="color:#808080 !important" title="Pekerjaan Berdasarkan Lokasi"><i class="fas fa-map-marker-alt"></i>{{ $item->lokasi->nama_lokasi }}</a></li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ $item->lokasi->nama_lokasi }}</li>
                                         <li>{{ $item->besaran_gaji }}</li>
                                     </ul>
                                 </div>

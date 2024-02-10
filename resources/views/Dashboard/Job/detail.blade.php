@@ -24,7 +24,7 @@
                     <div class="single-job-items mb-50">
                         <div class="job-items">
                             <div class="company-img company-img-details">
-                                <a href="#"><img src="{{ asset('pekerjaan/'.$pekerjaan->gambar) }}" alt=""></a>
+                                <a href="#"><img src="{{ asset('pekerjaan/'.$pekerjaan->gambar) }}" alt="" width="125" height="125"></a>
                             </div>
                             <div class="job-tittle">
                                 <a href="#">

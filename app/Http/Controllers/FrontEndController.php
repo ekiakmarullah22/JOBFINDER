@@ -20,14 +20,38 @@ class FrontEndController extends Controller
         return view ('FrontEnd.index', ['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan]);
     }
 
-    public function all() {
-        return "HELLO";
+    public function jobListing() {
         $namaWebsite = "JobFinder";
         $pekerjaan = Pekerjaan::with(['lokasi', 'kategori'])->latest()->paginate(5);
         $kategori = Kategori::all();
         $lokasi = Lokasi::all();
+        $count = Pekerjaan::count();
 
-        return view('FrontEnd.all',['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'kategori' => $kategori, 'lokasi' => $lokasi]);
+        return view('FrontEnd.all',['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'kategori' => $kategori, 'lokasi' => $lokasi, 'count' => $count]);
+    }
+
+    public function jobByKategori(string $id) {
+        //cocokkan data pekerjaan berdasarkan kategori_id
+        $namaWebsite = "JobFinder";
+        $kategori = Kategori::all();
+        $lokasi = Lokasi::all();
+        $pekerjaan = Pekerjaan::where('kategori_id', $id)->latest()->paginate(5);
+        $count = Pekerjaan::count();
+
+        // arahkan ke blade frontEnd Kategori
+        return view('FrontEnd.kategori', ['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'count' => $count, 'kategori' => $kategori, 'lokasi' => $lokasi]);
+    }
+
+    public function jobByLokasi(string $id) {
+        //cocokkan data pekerjaan berdasarkan kategori_id
+        $namaWebsite = "JobFinder";
+        $kategori = Kategori::all();
+        $lokasi = Lokasi::all();
+        $pekerjaan = Pekerjaan::where('lokasi_id', $id)->latest()->paginate(5);
+        $count = Pekerjaan::count();
+
+        // arahkan ke blade frontEnd Kategori
+        return view('FrontEnd.lokasi', ['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'count' => $count, 'kategori' => $kategori, 'lokasi' => $lokasi]);
     }
 
     /**

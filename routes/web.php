@@ -30,7 +30,9 @@ Route::post('/admin/job/store', [JobController::class, 'store']);
 // BUAT ROUTE UNTUK NAMPILIN DETAIL JOB
 Route::get('/job/{id}', [JobController::class, 'show']);
 // BUAT ROUTE UNTUK JOB LISTING
-Route::get('/job/job_listing', function () {
-    return 'Hello World';
-});
+Route::get('/job_listing', [FrontEndController::class, 'jobListing']);
+// BUAT ROUTE UNTUK MENAMPILKAN JOB BERDASARKAN KATEGORI
+Route::get('/kategori/{id}', [FrontEndController::class, 'jobByKategori']);
+// BUAT ROUTE UNTUK MENAMPILKAN JOB BERDASARKAN LOKASI
+Route::get('/lokasi/{id}', [FrontEndController::class, 'jobByLokasi']);
 

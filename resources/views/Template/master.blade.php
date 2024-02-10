@@ -250,6 +250,7 @@
         <script src="{{ asset('TEMPLATE/assets/js/jquery.validate.min.js')}}"></script>
         <script src="{{ asset('TEMPLATE/assets/js/mail-script.js')}}"></script>
         <script src="{{ asset('TEMPLATE/assets/js/jquery.ajaxchimp.min.js')}}"></script>
+        @stack('script')
         
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="{{ asset('TEMPLATE/assets/js/plugins.js')}}"></script>
