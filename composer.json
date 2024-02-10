@@ -10,6 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.4",
+        "laraveldaily/laravel-charts": "^0.2.3",
         "mckenziearts/laravel-notify": "^2.4"
     },
     "require-dev": {

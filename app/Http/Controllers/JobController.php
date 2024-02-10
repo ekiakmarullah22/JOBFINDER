@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
 use App\Models\Lokasi;
 use App\Models\Kategori;
 use App\Models\Pekerjaan;
@@ -94,7 +95,18 @@ class JobController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //harus ambil data postingan berdasarkan id beserta relasinya
+        //ambil semua data kategori
+        //ambil semua data lokasi
+        $judul = "Dashboard Admin";
+        $namaWebsite = "JobFinder";
+        $namaHalaman = "Edit Informasi Lowongan Pekerjaan";
+        $pekerjaan = Pekerjaan::with(['lokasi', 'kategori'])->find($id);
+        $kategori = Kategori::all();
+        $lokasi = Lokasi::all();
+
+        //arahkan ke halaman dashboard>job>edit
+        return view('Dashboard.Job.edit', ['namaWebsite' => $namaWebsite, 'namaHalaman' => $namaHalaman, 'pekerjaan' => $pekerjaan, 'kategori' => $kategori, 'lokasi' => $lokasi, 'judul' => $judul]);
     }
 
     /**
@@ -102,7 +114,46 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //update data pekerjaan
+        $request->validate([
+            'nama_pekerjaan' => 'required',
+            'besaran_gaji' => 'required',
+            'nama_perusahaan' => 'required',
+            'durasi_lamaran' => 'required',
+            'gambar' => 'image|mimes:jpg,jpeg,png',
+            'lokasi_id' => 'required',
+            'kategori_id' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        $pekerjaan = Pekerjaan::find($id);
+
+        // cek apakah gambar baru diupload
+        if($request->has('gambar')) {
+            $lokasiGambar = "pekerjaan/";
+            File::delete($lokasiGambar. $pekerjaan->gambar);
+
+            $namaFileGambar = time().'.'.$request->gambar->extension();
+            $request->gambar->move(public_path('pekerjaan'), $namaFileGambar);
+
+            $pekerjaan->gambar = $namaFileGambar;
+        }
+
+        // update data tanpa rubah gambar
+        $pekerjaan->nama_pekerjaan = $request["nama_pekerjaan"];
+        $pekerjaan->besaran_gaji = $request["besaran_gaji"];
+        $pekerjaan->nama_perusahaan = $request["nama_perusahaan"];
+        $pekerjaan->durasi_lamaran = $request["durasi_lamaran"];
+        $pekerjaan->lokasi_id = $request["lokasi_id"];
+        $pekerjaan->kategori_id = $request["kategori_id"];
+        $pekerjaan->deskripsi = $request["deskripsi"];
+
+        $pekerjaan->save();
+
+        // Kasih notifikasi kalau proses update data berhasil
+        notify()->success('Data Lowongan Pekerjaan Berhasil Diupdate...');
+
+        return redirect('/admin/job');
     }
 
     /**
@@ -110,6 +161,17 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //hapus data pekerjaan
+        $pekerjaan = Pekerjaan::find($id);
+        $lokasiGambar = "pekerjaan/";
+        File::delete($lokasiGambar. $pekerjaan->gambar);
+        
+
+        $pekerjaan->delete();
+
+         // Kasih notifikasi kalau proses update data berhasil
+         notify()->success('Data Lowongan Pekerjaan Berhasil Dihapus...');
+
+         return redirect('/admin/job');
     }
 }

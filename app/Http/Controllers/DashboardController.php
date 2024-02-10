@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,20 @@ class DashboardController extends Controller
         //arahkan ke folder Dashboard/index
         $judul = "Dashboard Admin";
         $namaHalaman = "Dashboard";
-        return view('Dashboard.index', ['judul' => $judul, 'namaHalaman' => $namaHalaman]);
+
+        // Laravel Chart
+        $chart_options = [
+            'chart_title' => 'Jumlah view Loker',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Pekerjaan',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'bar',
+        ];
+
+        $chart1 = new LaravelChart($chart_options);
+
+        return view('Dashboard.index', compact('judul', 'namaHalaman', 'chart1'));
 
     }
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\KategoryController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -35,4 +36,21 @@ Route::get('/job_listing', [FrontEndController::class, 'jobListing']);
 Route::get('/kategori/{id}', [FrontEndController::class, 'jobByKategori']);
 // BUAT ROUTE UNTUK MENAMPILKAN JOB BERDASARKAN LOKASI
 Route::get('/lokasi/{id}', [FrontEndController::class, 'jobByLokasi']);
+// BUAT ROUTE UNTUK MENGARAHKAN KE FORM EDIT JOB
+Route::get('/admin/job/{id}', [JobController::class, 'edit']);
+// BUAT ROUTE UNTUK MENYIMPAN DATA TERBARU PEKERJAAN
+Route::PUT('/admin/job/update/{id}', [JobController::class, 'update']);
+// BUAT ROUTE UNTUK MENGHAPUS DATA JOB
+Route::DELETE('/admin/job/delete/{id}', [JobController::class, 'destroy']);
+// BUAT ROUTE UNTUK ADMIN KATEGORI
+Route::get('/admin/kategori', [KategoryController::class, 'index']);
+// BUAT ROUTE UNTUK MENGARAHKAN KE HALAMAN CREATE KATEGORI
+Route::get('/admin/kategori/create', [KategoryController::class, 'create']);
+// BUAT ROUTE UNTUK POST DATA KATEGORI
+Route::post('/admin/kategori/store', [KategoryController::class, 'store']);
+Route::get('/admin/kategori/{id}', [KategoryController::class, 'edit']);
+Route::PUT('/admin/kategori/update/{id}', [KategoryController::class, 'update']);
+Route::DELETE('/admin/kategori/delete/{id}', [KategoryController::class, 'destroy']);
 
+
+Auth::routes();

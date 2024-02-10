@@ -7,6 +7,7 @@
   <title>{{ $judul }}</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('DASHBOARD/src/assets/images/logos/favicon.ico')}}" />
   <link rel="stylesheet" href="{{ asset('DASHBOARD/src/assets/css/styles.min.css')}}" />
+  @stack('style')
   @notifyCss
 </head>
 
