@@ -22,6 +22,12 @@
             <link rel="stylesheet" href="{{ asset('TEMPLATE/assets/css/slick.css')}}">
             <link rel="stylesheet" href="{{ asset('TEMPLATE/assets/css/nice-select.css')}}">
             <link rel="stylesheet" href="{{ asset('TEMPLATE/assets/css/style.css')}}">
+            <style>
+                form.search-box .select-form .nice-select.open .list {
+                    height: 7rem !important;
+                    overflow-y: scroll !important;
+                }
+            </style>
    </head>
 
    <body>
@@ -166,7 +172,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <!-- logo -->
                         <div class="footer-logo mb-20">
-                        <a href="index.html"><img src="{{ asset('TEMPLATE/assets/img/logo/logo2_footer.png')}}" alt=""></a>
+                        <a href="/"><img src="{{ asset('TEMPLATE/assets/img/logo/logo2_footer.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">

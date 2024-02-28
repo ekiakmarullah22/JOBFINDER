@@ -12,7 +12,7 @@ class Pekerjaan extends Model
     use HasFactory;
     //definisikan table
     protected $table = "pekerjaan";
-    protected $fillable = ["nama_pekerjaan", "gambar", "kategori_id", "lokasi_id", "besaran_gaji", "deskripsi", "nama_perusahaan", "durasi_lamaran"];
+    protected $fillable = ["nama_pekerjaan", "gambar", "kategori_id", "lokasi_id", "besaran_gaji", "deskripsi", "nama_perusahaan", "durasi_lamaran", "tag"];
 
     public function lokasi(): BelongsTo
     {

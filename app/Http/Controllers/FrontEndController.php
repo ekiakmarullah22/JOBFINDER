@@ -17,7 +17,8 @@ class FrontEndController extends Controller
         //ARAHKAN KE FOLDER FRONTEND INDEX
         $namaWebsite = "JobFinder";
         $pekerjaan = Pekerjaan::with(['lokasi', 'kategori'])->latest()->paginate(5);
-        return view ('FrontEnd.index', ['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan]);
+        $lokasi = Lokasi::latest()->get();
+        return view ('FrontEnd.index', ['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'lokasi' => $lokasi]);
     }
 
     public function jobListing() {
@@ -28,6 +29,19 @@ class FrontEndController extends Controller
         $count = Pekerjaan::count();
 
         return view('FrontEnd.all',['namaWebsite' => $namaWebsite, 'pekerjaan' => $pekerjaan, 'kategori' => $kategori, 'lokasi' => $lokasi, 'count' => $count]);
+    }
+
+    public function searchJob(Request $request) {
+        // return "HELLO";
+        $namaWebsite = "JobFinder";
+        // tangkap request cari
+        $search = $request["search"];
+        // ambil data pekerjaan sesuai pencarian data
+        $pekerjaan = Pekerjaan::with(['lokasi', 'kategori'])->where('nama_pekerjaan', 'LIKE', "%".$search."%")->paginate(5);
+        $count = Pekerjaan::where('nama_pekerjaan', 'LIKE', "%".$search."%")->count();
+
+        return view('FrontEnd.cari', compact('pekerjaan', 'count', 'namaWebsite'));
+
     }
 
     public function jobByKategori(string $id) {
@@ -57,48 +71,48 @@ class FrontEndController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    // public function edit(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function update(Request $request, string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // public function destroy(string $id)
+    // {
+    //     //
+    // }
 }

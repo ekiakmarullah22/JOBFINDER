@@ -6,8 +6,7 @@
                 <ul id="navigation">
                     <li><a href="/">Home</a></li>
                     <li><a href="/job_listing">Find a Jobs </a></li>
-                    <li><a href="{{ asset('TEMPLATE/about.html')}}">About</a></li>
-                    <li><a href="{{ asset('TEMPLATE/contact.html')}}">Contact</a></li>
+                    <li><a href="/tentang">About</a></li>
                 </ul>
             </nav>
         </div>          

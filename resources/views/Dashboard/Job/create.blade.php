@@ -8,6 +8,19 @@
 <h1>{{ $namaHalaman }}</h1>
 @endsection
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('amsify/css/amsify.suggestags.css') }}">
+@endpush
+
+@push('script')
+<script src="{{ asset('amsify/js/jquery.amsify.suggestags.js') }}"></script>
+<script>
+    $('input[name="tag"]').amsifySuggestags({
+	tagLimit: 3
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -112,6 +125,18 @@
                     @enderror
                 </div>
 
+                <div class="col-lg-12">
+                    <label for="tag" class="col-md-4 col-form-label">{{ __('Tag Pekerjaan') }}</label>
+                    <input id="tag" type="text" class="form-control mb-3 @error('tag') is-invalid @enderror" name="tag" value="{{ old('tag') }}" autocomplete="tag">
+
+                    @error('tag')
+                    <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+                        <strong>{{ $message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @enderror
+                </div>
+
                 <div class="col-lg-12 mb-3">
                     <label for="deskripsi" class="col-md-4 col-form-label">{{ __('Deskripsi Pekerjaan') }}</label>
                     <textarea name="deskripsi" id="" cols="30" rows="10" class="form-control" id="text-area"></textarea>
@@ -128,23 +153,20 @@
             <button type="submit" class="btn btn-primary" style="background-color: #5D87FF !important;">Submit<i class="ti ti-brand-telegram mx-2"></i></button>
           </form>
     </div>
-  </div>
+</div>
 @endsection
 
 @push('script')
 <script src="https://cdn.tiny.cloud/1/ipgxuvhcxjpgeqpq0yt3d944bfy9em041d6o0fyz5aijin20/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-      selector: 'textarea',
-      plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-      mergetags_list: [
-        { value: 'First.Name', title: 'First Name' },
-        { value: 'Email', title: 'Email' },
-      ],
-      ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-    });
-  </script>
+    selector : "textarea",
+    content_css: 'writer',
+    theme: "silver",
+    plugins: [ 'table powerpaste',
+               'lists media',
+               'paste' ],
+    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify',
+    })
+</script>
 @endpush

@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('pekerjaan', function (Blueprint $table) {
             //
-            $table->dropColumn('gambar');
+            $table->dropColumn('deskripsi');
         });
     }
 };

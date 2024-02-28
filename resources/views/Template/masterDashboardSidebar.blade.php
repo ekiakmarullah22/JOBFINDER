@@ -24,9 +24,10 @@
               <span class="hide-menu">Dashboard</span>
             </a>
           </li>
+          @can('admin')
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Website Menu</span>
+            <span class="hide-menu">Dashboard Menu</span>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="/admin/job" aria-expanded="false">
@@ -45,39 +46,27 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ asset('DASHBOARD/src/ui-card.html')}}" aria-expanded="false">
+            <a class="sidebar-link" href="/admin/lokasi" aria-expanded="false">
+              <span>
+                <i class="ti ti-pin"></i>
+              </span>
+              <span class="hide-menu">Location</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">FrontEnd Menu</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/admin/about" aria-expanded="false">
               <span>
                 <i class="ti ti-info-circle"></i>
               </span>
               <span class="hide-menu">About</span>
             </a>
           </li>
+        @endcan
         </ul>
-
-        <hr>
-
-        <div class="navbar-collapse justify-content-start px-0" id="navbarNav">
-          <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-start">
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <img src="{{ asset('DASHBOARD/src/assets/images/profile/user-1.jpg')}}" alt="" width="35" height="35" class="rounded-circle">
-                <span class="text-secondar"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                <div class="message-body">
-                  <a href="{{ route('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">Logout</a>
-
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                  </form>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
       </nav>
       <!-- End Sidebar navigation -->
     </div>

@@ -49,7 +49,8 @@ class JobController extends Controller
             'gambar' => 'required|image|mimes:jpg,jpeg,png',
             'lokasi_id' => 'required',
             'kategori_id' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'tag' => 'required'
         ]);
 
         // Ambil nama gambar dan pindahkan gambar dalam folder public/pekerjaan
@@ -65,6 +66,7 @@ class JobController extends Controller
         $pekerjaan->lokasi_id = $request["lokasi_id"];
         $pekerjaan->kategori_id = $request["kategori_id"];
         $pekerjaan->deskripsi = $request["deskripsi"];
+        $pekerjaan->tag = $request["tag"];
 
         $pekerjaan->save();
 
@@ -123,7 +125,8 @@ class JobController extends Controller
             'gambar' => 'image|mimes:jpg,jpeg,png',
             'lokasi_id' => 'required',
             'kategori_id' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'tag' => 'required'
         ]);
 
         $pekerjaan = Pekerjaan::find($id);
@@ -147,6 +150,7 @@ class JobController extends Controller
         $pekerjaan->lokasi_id = $request["lokasi_id"];
         $pekerjaan->kategori_id = $request["kategori_id"];
         $pekerjaan->deskripsi = $request["deskripsi"];
+        $pekerjaan->tag = $request["tag"];
 
         $pekerjaan->save();
 

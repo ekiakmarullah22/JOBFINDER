@@ -1,7 +1,7 @@
 @extends('Template.masterDashboard')
 
 @section('judul')
-    Halaman Edit nama_kategori
+    Halaman Edit Kategori
 @endsection
 
 @section('namaHalaman')

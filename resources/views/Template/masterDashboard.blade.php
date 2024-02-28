@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="{{ asset('DASHBOARD/src/assets/css/styles.min.css')}}" />
   @stack('style')
   @notifyCss
+  <style>
+    .notify {
+      z-index: 9999 !important;
+    }
+  </style>
 </head>
 
 <body>

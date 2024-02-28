@@ -44,7 +44,14 @@
       <tr>
         <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $key+1 }}</h6></td>
         <td class="border-bottom-0">
-            <h6 class="fw-semibold mb-1">{{ $value->nama_pekerjaan }}</h6>                          
+            <h6 class="fw-semibold mb-1">{{ $value->nama_pekerjaan }}</h6>
+            @forelse (explode(',',$value->tag) as $item)
+            @if ($item)
+            <span class="badge badge-primary fw-normal" style="background-color: #007bff !important; color:#FFFFFF !important;">#{{ $item }}</span> 
+            @endif
+            @empty
+            <span class="fw-normal">Data tag tidak ditemukan...</span>
+            @endforelse                          
         </td>
         <td class="border-bottom-0">
           <p class="mb-0 fw-normal">{{ $value->lokasi->nama_lokasi }}</p>

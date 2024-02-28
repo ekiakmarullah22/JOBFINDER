@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('lokasi_id');
             $table->foreign('lokasi_id')->references('id')->on('lokasi');
             $table->string('besaran_gaji');
+            $table->string('tag');
             $table->timestamps();
         });
     }

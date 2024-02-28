@@ -27,7 +27,7 @@ class KategoryController extends Controller
     {
         //
         $judul = "Dashboard Admin";
-        $namaHalaman = "Tambah Lowongan Pekerjaan Baru";
+        $namaHalaman = "Tambah Kategori Baru";
         return view('Dashboard.Kategori.create', compact('judul', 'namaHalaman'));
     }
 
@@ -55,10 +55,10 @@ class KategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -67,7 +67,7 @@ class KategoryController extends Controller
     {
         //
         $judul = "Dashboard Admin";
-        $namaHalaman = "Tambah Lowongan Pekerjaan Baru";
+        $namaHalaman = "Edit Kategori";
         $kategori = Kategori::find($id);
 
         return view('Dashboard.Kategori.edit', compact('judul', 'namaHalaman', 'kategori'));

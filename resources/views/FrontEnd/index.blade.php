@@ -18,22 +18,24 @@
                 <div class="row">
                     <div class="col-xl-8">
                         <!-- form -->
-                        <form action="#" class="search-box">
+                        <form action="/cari" class="search-box" method="GET">
                             <div class="input-form">
-                                <input type="text" placeholder="Job Tittle or keyword">
+                                <input type="text" placeholder="Job Tittle or keyword" name="search">
                             </div>
                             <div class="select-form">
                                 <div class="select-itms">
                                     <select name="select" id="select1">
-                                        <option value="">Location BD</option>
-                                        <option value="">Location PK</option>
-                                        <option value="">Location US</option>
-                                        <option value="">Location UK</option>
+                                        <option disabled selected>Pilih Lokasi Pekerjaan</option>
+                                        @forelse ($lokasi as $item)
+                                        <option value="$item->id" style="z-index:9999 !important;">{{ $item->nama_lokasi }}</option>
+                                        @empty
+                                            <h4>Data lokasi tidak ada...</h4>
+                                        @endforelse
                                     </select>
                                 </div>
                             </div>
                             <div class="search-form">
-                                <a href="#">Find job</a>
+                                <input type="submit" value="Find Job" class="btn btn-danger" style="padding: 2.2rem 3.2rem !important;">
                             </div>	
                         </form>	
                     </div>
@@ -63,7 +65,7 @@
                         <span class="flaticon-tour"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Design & Creative</a></h5>
+                       <h5><a href="/job_listing">Design & Creative</a></h5>
                         <span>(653)</span>
                     </div>
                 </div>
@@ -74,7 +76,7 @@
                         <span class="flaticon-cms"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Design & Development</a></h5>
+                       <h5><a href="/job_listing">Design & Development</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -85,7 +87,7 @@
                         <span class="flaticon-report"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Sales & Marketing</a></h5>
+                       <h5><a href="/job_listing">Sales & Marketing</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -96,7 +98,7 @@
                         <span class="flaticon-app"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Mobile Application</a></h5>
+                       <h5><a href="/job_listing">Mobile Application</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -107,7 +109,7 @@
                         <span class="flaticon-helmet"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Construction</a></h5>
+                       <h5><a href="/job_listing">Construction</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -118,7 +120,7 @@
                         <span class="flaticon-high-tech"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Information Technology</a></h5>
+                       <h5><a href="/job_listing">Information Technology</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -129,7 +131,7 @@
                         <span class="flaticon-real-estate"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Real Estate</a></h5>
+                       <h5><a href="/job_listing">Real Estate</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -140,7 +142,7 @@
                         <span class="flaticon-content"></span>
                     </div>
                     <div class="services-cap">
-                       <h5><a href="job_listing.html">Content Writer</a></h5>
+                       <h5><a href="/job_listing">Content Writer</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -151,7 +153,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="browse-btn2 text-center mt-50">
-                    <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
+                    <a href="/job_listing" class="border-btn2">Browse All Sectors</a>
                 </div>
             </div>
         </div>
@@ -351,7 +353,7 @@
                     <div class="support-caption">
                         <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
                         <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
-                        <a href="about.html" class="btn post-btn">Post a job</a>
+                        <a href="/tentang" class="btn post-btn">Post a job</a>
                     </div>
                 </div>
             </div>
@@ -360,7 +362,7 @@
                     <img src="{{ asset('TEMPLATE/assets/img/service/support-img.jpg')}}" alt="">
                     <div class="support-img-cap text-center">
                         <p>Since</p>
-                        <span>1994</span>
+                        <span>2024</span>
                     </div>
                 </div>
             </div>
@@ -395,7 +397,7 @@
                         </div>
                         <div class="blog-cap">
                             <p>|   Properties</p>
-                            <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                            <h3><a href="#">Footprints in Time is perfect House in Kurashiki</a></h3>
                             <a href="#" class="more-btn">Read more »</a>
                         </div>
                     </div>
@@ -414,7 +416,7 @@
                         </div>
                         <div class="blog-cap">
                             <p>|   Properties</p>
-                            <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                            <h3><a href="#">Footprints in Time is perfect House in Kurashiki</a></h3>
                             <a href="#" class="more-btn">Read more »</a>
                         </div>
                     </div>
